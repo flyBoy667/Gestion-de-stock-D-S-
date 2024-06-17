@@ -195,8 +195,12 @@ include('includes/header.php');
                             </select>
                         </div>
                         <div style="width:10%;height:55px;float:left;font-size:16px;font-weight:bold;text-align:left;">
-                            Civilité :<br/>
-                            <input type="text" id="civilite" name="civilite"/>
+                            Civilité : <br/>
+                            <select name="civilite" id="civilite">
+                                <option></option>
+                                <option>Mr</option>
+                                <option>Mme</option>
+                            </select>
                         </div>
 
                         <div style="width:10%;height:55px;float:left;"></div>
