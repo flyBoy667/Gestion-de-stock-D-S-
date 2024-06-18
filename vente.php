@@ -286,7 +286,7 @@ include('includes/header.php');
                                         if (transport.responseText === "nok")
                                             alert("Une erreur est survenue");
                                         else {
-                                            if (document.getElementById("paye").value === "" || (document.getElementById("paye").value < (document.getElementById("total_commande").value - document.getElementById("remise").value)) || (document.getElementById("paye").value > (document.getElementById("total_commande").value - document.getElementById("remise").value)))
+                                            if (document.getElementById("paye").value === "" || (document.getElementById("paye").value < (document.getElementById("total_commande").value)) || (document.getElementById("paye").value > (document.getElementById("total_commande").value)))
                                                 alert("La Somme a payé incorrect");
                                             else {
                                                 alert("La facture a été validée");
@@ -401,10 +401,10 @@ include('includes/header.php');
                             </h4>
                         </div>
                         <div style="width:3%;height:55px;float:left;"></div>
-<!--                        <div style="width:15%;height:55px;float:left;font-size:16px;font-weight:bold;text-align:left;margin-top: -5px;">-->
-<!--                            Remise :<br/>-->
-<!--                            <input type="text" id="remise" name="remise" value="0" onchange="montant_a_payer();"/>-->
-<!--                        </div>-->
+                        <!--                        <div style="width:15%;height:55px;float:left;font-size:16px;font-weight:bold;text-align:left;margin-top: -5px;">-->
+                        <!--                            Remise :<br/>-->
+                        <!--                            <input type="text" id="remise" name="remise" value="0" onchange="montant_a_payer();"/>-->
+                        <!--                        </div>-->
                         <div style="width:3%;height:55px;float:left;"></div>
                         <div style="width:15%;height:55px;float:left;font-size:16px;font-weight:bold;text-align:left;margin-top: -5px;">
                             Payé :<br/>
@@ -479,7 +479,6 @@ include('includes/header.php');
             </div>
             <script language='javascript' type="text/javascript">
                 var tot_com = 0;
-
                 function plus_com() {
                     if (ref_client.value !== 0 && ref_produit.value !== 0 && qte_commande.value !== "0" && qte_commande.value !== "") {
                         if (parseInt(qte_commande.value) > parseInt(qte.value))
@@ -501,7 +500,7 @@ include('includes/header.php');
 
                 function montan_a_payer() {
                     //alert("test");
-                    document.getElementById('paye').value = document.getElementById('total_commande').value - document.getElementById('remise').value;
+                    document.getElementById('paye').value = document.getElementById('total_commande').value;
                 }
 
 
