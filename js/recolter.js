@@ -12,7 +12,7 @@ function recolter()
 				}
 				else
 				{
-					if(transport.responseText=="ok")
+					if(transport.responseText==="ok")
 					{
 						document.getElementById('qte_produit_aps').value= parseInt(document.getElementById('qte_produit_avt').value) + parseInt(document.getElementById('qte_produit').value);
 						document.getElementById('msg_reponse').innerText = "Le stock a été mis à jour avec succès";
