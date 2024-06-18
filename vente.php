@@ -99,10 +99,113 @@ include('includes/header.php');
     <!-- Bootstrap4 Duallistbox -->
     <link rel="stylesheet" href="plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
     <div class="col-12">
+<!--        <div id="produit_dialog" title="Add Data">-->
+<!--            <form method="post" id="article_form" action="" enctype="multipart/form-data">-->
+<!--                <div class="row">-->
+<!--                    <div class="col-sm-6">-->
+<!--                        <div class="form-group">-->
+<!--                            <label>Categorie</label>-->
+<!--                            <select class="form-control" type="text" id="categorie" name="categorie">-->
+<!--                                <option>Selectionnez</option>-->
+<!--                                --><?php //if ($total_categorie > 0) {
+//                                    foreach ($result_categorie as $row_categorie) {
+//                                        ?>
+<!--                                        <option value="--><?php //echo $row_categorie["id_categorie"]; ?><!--">--><?php //echo $row_categorie["categorie"] ?><!--</option>-->
+<!--                                    --><?php //}
+//                                } ?>
+<!--                            </select>-->
+<!--                            <span id="error_categorie" class="text-danger"></span>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-sm-6">-->
+<!--                        <div class="form-group">-->
+<!--                            <label>Marque</label>-->
+<!--                            <select class="form-control" type="text" id="marque" name="marque">-->
+<!--                                <option>Selectionnez</option>-->
+<!--                                --><?php //if ($total_marque > 0) {
+//                                    foreach ($result_marque as $row_marque) {
+//                                        ?>
+<!--                                        <option value="--><?php //echo $row_marque["id_marque"]; ?><!--">--><?php //echo $row_marque["marque"]; ?><!--</option>-->
+<!--                                    --><?php //}
+//                                } ?>
+<!--                            </select>-->
+<!--                            <span id="error_marque" class="text-danger"></span>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="row">-->
+<!--                    <div class="col-sm-6">-->
+<!--                        <div class="form-group">-->
+<!--                            <label>Code produit</label>-->
+<!--                            <input type="text" name="code" id="code" class="form-control"/>-->
+<!--                            <span id="error_code" class="text-danger"></span>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-sm-6">-->
+<!--                        <div class="form-group">-->
+<!--                            <label>Nom produit</label>-->
+<!--                            <input type="text" name="nom" id="nom" class="form-control"/>-->
+<!--                            <span id="error_nom" class="text-danger"></span>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="row">-->
+<!--                    <div class="col-sm-6">-->
+<!--                        <div class="form-group">-->
+<!--                            <label>Prix d'achat</label>-->
+<!--                            <input type="text" name="pa" id="pa" class="form-control"/>-->
+<!--                            <span id="error_pa" class="text-danger"></span>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-sm-6">-->
+<!--                        <div class="form-group">-->
+<!--                            <label>Prix de vente</label>-->
+<!--                            <input type="text" name="pv" id="pv" class="form-control"/>-->
+<!--                            <span id="error_pv" class="text-danger"></span>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="row">-->
+<!--                    <div class="col-sm-6">-->
+<!--                        <div class="form-group">-->
+<!--                            <label>Stock</label>-->
+<!--                            <input type="text" name="stock" id="stock" class="form-control"/>-->
+<!--                            <span id="error_stock" class="text-danger"></span>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-sm-6">-->
+<!--                        <div class="form-group">-->
+<!--                            <label>Statut</label>-->
+<!--                            <select class="form-control" type="text" id="statut" name="statut">-->
+<!--                                <option value="">Selectionnez</option>-->
+<!--                                <option value="1">Actif</option>-->
+<!--                                <option value="2">Inactif</option>-->
+<!--                                <span id="error_statut" class="text-danger"></span>-->
+<!--                            </select>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!---->
+<!--                <!--<div class="row">-->
+<!--                    <div class="col-sm-6">-->
+<!--                        <div class="form-group">-->
+<!--                            <label>Image</label>-->
+<!--                            <input type="file" name="photo" id="photo" class="form-control" accept="image/png, image/jpeg"/>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->-->
+<!--                <div class="form-group">-->
+<!--                    <input type="hidden" name="action" id="action" value="insert"/>-->
+<!--                    <input type="hidden" name="hidden_id" id="hidden_id"/>-->
+<!--                    <input type="submit" name="form_action" id="form_action" class="btn btn-info" value="Ajouter"/>-->
+<!--                </div>-->
+<!--            </form>-->
+<!--        </div>-->
+
         <!-- SELECT2 EXAMPLE -->
         <div class="card card-default">
             <div class="card-header">
-                <h3 class="card-title">Ajout nouvelle stock</h3>
+                <h3 class="card-title">Creer un nouveau client</h3>
 
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -196,22 +299,18 @@ include('includes/header.php');
                         </div>
                         <div style="width:10%;height:55px;float:left;font-size:16px;font-weight:bold;text-align:left;">
                             Civilité : <br/>
-                            <select name="civilite" id="civilite">
-                                <option></option>
-                                <option>Mr</option>
-                                <option>Mme</option>
-                            </select>
+                            <input type="text" name="civilite" id="civilite" disabled>
                         </div>
 
                         <div style="width:10%;height:55px;float:left;"></div>
                         <div style="width:6%;height:55px;float:left;"></div>
                         <div style="width:25%;height:55px;float:left;font-size:16px;font-weight:bold;text-align:left;">
                             Nom du client :<br/>
-                            <input type="text" id="nom_client" name="nom_client"/>
+                            <input type="text" id="nom_client" name="nom_client" disabled/>
                         </div>
                         <div style="width:25%;height:55px;float:left;font-size:16px;font-weight:bold;text-align:left;">
                             Prénom du client :<br/>
-                            <input type="text" id="prenom_client" name="prenom_client" value=""/>
+                            <input type="text" id="prenom_client" name="prenom_client" disabled/>
                         </div>
 
 
@@ -346,14 +445,14 @@ include('includes/header.php');
                 var tot_com = 0;
 
                 function plus_com() {
-                    if (ref_client.value != 0 && ref_produit.value != 0 && qte_commande.value != "0" && qte_commande.value != "") {
+                    if (ref_client.value !== 0 && ref_produit.value !== 0 && qte_commande.value !== "0" && qte_commande.value !== "") {
                         if (parseInt(qte_commande.value) > parseInt(qte.value))
                             alert("La quantité en stock n'est pas suffisante pour honorer la commande");
                         else {
-                            var ref_p = ref_produit.value;
-                            var qte_p = qte_commande.value;
-                            var des_p = designation.value;
-                            var pht_p = puht.value;
+                            const ref_p = ref_produit.value;
+                            const qte_p = qte_commande.value;
+                            const des_p = designation.value;
+                            const pht_p = puht.value;
 
                             tot_com = tot_com + qte_p * pht_p;
                             total_commande.value = tot_com.toFixed(2);
@@ -372,12 +471,12 @@ include('includes/header.php');
 
                 function facture() {
 
-                    var tab_com = chaine_com.value.split('|');
-                    var nb_lignes = tab_com.length;
+                    const tab_com = chaine_com.value.split('|');
+                    const nb_lignes = tab_com.length;
                     document.getElementById("det_com").innerHTML = "";
                     for (ligne = 0; ligne < nb_lignes; ligne++) {
                         if (tab_com[ligne] != "") {
-                            var ligne_com = tab_com[ligne].split(';');
+                            const ligne_com = tab_com[ligne].split(';');
                             document.getElementById("det_com").innerHTML += "<div class='bord'></div>";
                             document.getElementById("det_com").innerHTML += "<div class='suite'>" + ligne_com[0] + "</div>";
                             document.getElementById("det_com").innerHTML += "<div class='suite'>" + ligne_com[1] + "</div>";
@@ -391,7 +490,7 @@ include('includes/header.php');
 
                 function suppr(ligne_s) {
                     chaine_com.value = chaine_com.value.replace('|' + ligne_s, '');
-                    var tab_detail = ligne_s.split(';');
+                    const tab_detail = ligne_s.split(';');
 
                     total_commande.value = (total_commande.value - tab_detail[1] * tab_detail[3]).toFixed(2);
                     total_com.value = total_commande.value;
@@ -399,6 +498,13 @@ include('includes/header.php');
 
                     facture();
                 }
+            </script>
+            <!--            Boite modale (new user) scripts-->
+            <script>
+                document.getElementById('produit_dialog').dialog({
+                    autoOpen: false,
+                    width: 600
+                });
             </script>
             <!-- /.card-body -->
         </div>

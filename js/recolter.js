@@ -2,7 +2,7 @@ function recolter()
 	{
 		document.getElementById("formulaire").request({
 			onComplete:function(transport){
-				if(document.getElementById('tampon').value=='recup')
+				if(document.getElementById('tampon').value==='recup')
 				{
 					var tab_info = transport.responseText.split('|');
 					document.getElementById('des_produit').value = tab_info[0];
