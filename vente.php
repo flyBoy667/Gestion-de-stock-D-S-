@@ -252,7 +252,7 @@ include('includes/header.php');
                                         var prenom_client = document.getElementById('prenom_client').value;
                                         var rep = transport.responseText;
 
-                                        if (civilite === "") {
+                                        if (civilite === "0") {
                                             errors.push("Veuillez sélectionner une civilité.");
                                         }
 
@@ -479,6 +479,7 @@ include('includes/header.php');
             </div>
             <script language='javascript' type="text/javascript">
                 var tot_com = 0;
+
                 function plus_com() {
                     if (ref_client.value !== 0 && ref_produit.value !== 0 && qte_commande.value !== "0" && qte_commande.value !== "") {
                         if (parseInt(qte_commande.value) > parseInt(qte.value))
@@ -488,6 +489,8 @@ include('includes/header.php');
                             const qte_p = qte_commande.value;
                             const des_p = designation.value;
                             const pht_p = puht.value;
+
+                            qte.value = parseInt(qte.value) - parseInt(qte_p);
 
                             tot_com = tot_com + qte_p * pht_p;
                             total_commande.value = tot_com.toFixed(2);
@@ -533,13 +536,6 @@ include('includes/header.php');
 
                     facture();
                 }
-            </script>
-            <!--            Boite modale (new user) scripts-->
-            <script>
-                document.getElementById('produit_dialog').dialog({
-                    autoOpen: false,
-                    width: 600
-                });
             </script>
             <!-- /.card-body -->
         </div>
