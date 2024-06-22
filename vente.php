@@ -265,28 +265,29 @@ include('includes/header.php');
                                         break;
 
                                     case 'creer_client':
-                                        var errors = [];
+                                        // var errors = [];
+
                                         var civilite = document.getElementById('civilite').value;
                                         var nom_client = document.getElementById('nom_client').value;
                                         var prenom_client = document.getElementById('prenom_client').value;
                                         var rep = transport.responseText;
 
-                                        if (civilite === "0" || civilite === 0) {
-                                            errors.push("Veuillez sélectionner une civilité.");
-                                        }
-
-                                        if (nom_client === "") {
-                                            errors.push("Veuillez saisir le nom du client.");
-                                        }
-
-                                        if (prenom_client === "") {
-                                            errors.push("Veuillez saisir le prénom du client.");
-                                        }
-
-                                        if (errors.length > 0) {
-                                            alert(errors.join("\n"));
-                                            return;
-                                        }
+                                        // if (civilite === "0" || civilite === 0) {
+                                        //     errors.push("Veuillez sélectionner une civilité.");
+                                        // }
+                                        //
+                                        // if (nom_client === "") {
+                                        //     errors.push("Veuillez saisir le nom du client.");
+                                        // }
+                                        //
+                                        // if (prenom_client === "") {
+                                        //     errors.push("Veuillez saisir le prénom du client.");
+                                        // }
+                                        //
+                                        // if (errors.length > 0) {
+                                        //     alert(errors.join("\n"));
+                                        //     return;
+                                        // }
 
                                         if (rep === "nok")
                                             alert("Le client existe déjà");
@@ -331,7 +332,7 @@ include('includes/header.php');
                         </div>
                         <div style="width:10%;height:50px;float:left;"></div>
                         <div style="width:35%;height:50px;float:left;font-size:16px;font-weight:bold;text-align:left;">
-                            <input type="button" id="creer_client" name="creer_client" value="Créer le client"
+                            <input type="button" id="creer_client" name="creer_client" value="Créer le client" disabled
                                    onclick="document.getElementById('param').value='creer_client';recolter();"/>
                         </div>
                         <div style="width:10%;height:50px;float:left;"></div>
@@ -508,6 +509,12 @@ include('includes/header.php');
             <script language='javascript' type="text/javascript">
                 var tot_com = 0;
 
+
+                document.getElementById("formulaire").addEventListener("input", (ev) => {
+                    if (document.getElementById("nom_client").value.length >= 2 && document.getElementById("prenom_client").value.length >= 2 && document.getElementById("civilite").value !== "0") {
+                        document.getElementById("creer_client").disabled = false;
+                    }
+                })
 
                 document.getElementById("paye").addEventListener("input", (e) => {
                     maj_total_remise()
