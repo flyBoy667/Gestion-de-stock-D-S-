@@ -34,7 +34,7 @@ if (isset($_POST["param"])) {
             }
             break;
         case "facturer":
-            
+
             if ($_POST["paye"] != 0) {
 
                 $requete = "SELECT Com_num FROM commandes ORDER BY Com_num DESC LIMIT 1;";
@@ -53,9 +53,24 @@ if (isset($_POST["param"])) {
                 $texte_com = $_POST["chaine_com"];
                 $tab_com = explode('|', $texte_com);
 
-                if ($montant_paye < $com_montant) {
+                if ($remise < 0) {
+                    $restant = $remise * (-1);
 
+                    $facture_number = mysqli_real_escape_string($liaison, $facture_number);
+                    $com_montant = mysqli_real_escape_string($liaison, $com_montant);
+                    $restant = mysqli_real_escape_string($liaison, $restant);
+                    $com_date = mysqli_real_escape_string($liaison, $com_date);
+                    $com_client = mysqli_real_escape_string($liaison, $com_client);
+                    $montant_paye = mysqli_real_escape_string($liaison, $montant_paye);
+
+                    $query = "INSERT INTO paiements_incomplets (num_facture, montant_toatl, restant, paye, paiment_date, id_client) VALUES ('$facture_number', $com_montant, $restant, '$montant_paye', '$com_date', $com_client)";
+                    $retours = mysqli_query($liaison, $query);
+
+                    if (!$retours) {
+                        echo "Erreur lors de l'exécution de la requête : " . mysqli_error($liaison);
+                    }
                 }
+
 
                 $requete = "INSERT INTO commandes(Com_client, Com_date, Com_montant, facture_number, Com_remise, montant_paye) VALUES (" . $com_client . ", '" . $com_date . "', " . $com_montant . ", '" . $facture_number . "'," . $remise . "," . $montant_paye . ");";
                 $retours = mysqli_query($liaison, $requete);
