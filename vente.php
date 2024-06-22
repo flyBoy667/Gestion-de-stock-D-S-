@@ -224,6 +224,7 @@ include('includes/header.php');
                 <script language='javascript' type="text/javascript">
                     var articles = {}; // Objet pour stocker les informations des articles
                     var article = 0
+                    var produits_panier = [];
 
                     function recolter() {
                         document.getElementById("formulaire").request({
@@ -313,8 +314,9 @@ include('includes/header.php');
                                             if (document.getElementById("paye").value === "") {
                                                 alert("La Somme a payé incorrect");
                                             } else {
+
                                                 alert("La facture a été validée");
-                                                document.getElementById("editer").innerHTML = "<input type='button' value='Editer la facture' onclick='window.open(\"edition.php?info=" + reponse + "\")' />";
+                                                document.getElementById("editer").innerHTML = "<input type='button' value='Voir la facture' onclick='window.open(\"edition.php?info=" + reponse + "\")' />";
                                             }
                                         }
 
