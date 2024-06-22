@@ -346,10 +346,10 @@ include('includes/header.php');
                                     onchange="document.getElementById('param').value='recup_client';recolter();">
                                 <option value="0">Choisir client</option>
                                 <?php
-                                $requete = "SELECT IdClient FROM clients ORDER BY IdClient;";
+                                $requete = "SELECT IdClient, Prenom, Nom FROM clients ORDER BY IdClient;";
                                 $retours = mysqli_query($liaison, $requete);
                                 while ($retour = mysqli_fetch_array($retours)) {
-                                    echo "<option value='" . $retour["IdClient"] . "'>" . $retour["IdClient"] . "</option>";
+                                    echo "<option value='" . $retour["IdClient"] . "'>" . $retour["IdClient"] . " - " . $retour["Prenom"] . " " . $retour["Nom"] . "</option>";
                                 }
                                 ?>
                             </select>
@@ -388,10 +388,10 @@ include('includes/header.php');
                                     onchange="document.getElementById('param').value='recup_article';recolter();">
                                 <option value="0">Réf. produit</option>
                                 <?php
-                                $requete = "SELECT id_produit FROM produit ORDER BY id_produit;";
+                                $requete = "SELECT id_produit, nom_produit FROM produit ORDER BY id_produit;";
                                 $retours = mysqli_query($liaison, $requete);
                                 while ($retour = mysqli_fetch_array($retours)) {
-                                    echo "<option value='" . $retour["id_produit"] . "'>" . $retour["id_produit"] . "</option>";
+                                    echo "<option value='" . $retour["id_produit"] . "'>" . $retour["id_produit"] . '-' . $retour['nom_produit'].  "</option>";
                                 }
                                 ?>
                             </select>
