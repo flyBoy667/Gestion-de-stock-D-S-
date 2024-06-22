@@ -222,14 +222,14 @@ $(document).ready(function(){
 
 	$('#article_form').on('submit', function(event){
 		event.preventDefault();
-		var error_code = '';
-		var error_nom = '';
-		var error_categorie = '';
-		var error_marque = '';
-		var error_pv = '';
-		var error_pa = '';
-		var error_statut = '';
-		if ($('#code').val() == '') 
+        let error_code = '';
+        let error_nom = '';
+        let error_categorie = '';
+        let error_marque = '';
+        let error_pv = '';
+        let error_pa = '';
+        let error_statut = '';
+        if ($('#code').val() === '')
 		{
 			error_code = 'Le code produit obligatoire';
 			$('#error_code').text(error_reference);
@@ -242,7 +242,7 @@ $(document).ready(function(){
 			$('#code').css('border-color', '');
 		}
 
-		if ($('#nom').val() == '') 
+		if ($('#nom').val() === '')
 		{
 			error_nom = 'Le nom du produit obligatoire';
 			$('#error_nom').text(error_nom);
@@ -255,7 +255,7 @@ $(document).ready(function(){
 			$('#nom').css('border-color', '');
 		}
 
-		if ($('#categorie').val() == '') 
+		if ($('#categorie').val() === '')
 		{
 			error_categorie= 'Le categorie est obligatoire';
 			$('#error_categorie').text(error_categorie);

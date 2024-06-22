@@ -38,7 +38,7 @@
 	                  <select class="form-control select2bs4" style="width: 100%;" id="ref_produit" name="ref_produit" onchange="document.getElementById('tampon').value='recup';recolter();">
 							<option value="0" selected="selected">Choisir une référence</option>
 							<?php 
-	                    	$liaison = mysqli_connect('127.0.0.1', 'root', '');
+	                    	$liaison = mysqli_connect('127.0.0.1', 'fly', 'root');
 							mysqli_select_db($liaison, 'stock_v3');
 							$requete = "SELECT id_produit, nom_produit FROM produit ORDER BY id_produit;";
 							$retours = mysqli_query($liaison, $requete);

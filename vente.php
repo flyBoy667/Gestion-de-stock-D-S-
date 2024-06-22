@@ -3,6 +3,7 @@
 $liaison = mysqli_connect('127.0.0.1', 'fly', 'root');
 mysqli_select_db($liaison, 'stock_v3');
 
+
 include('includes/header.php');
 
 ?>
@@ -99,10 +100,116 @@ include('includes/header.php');
     <!-- Bootstrap4 Duallistbox -->
     <link rel="stylesheet" href="plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
     <div class="col-12">
+        <!--        <div id="produit_dialog" title="Add Data">-->
+        <!--            <form method="post" id="article_form" action="" enctype="multipart/form-data">-->
+        <!--                <div class="row">-->
+        <!--                    <div class="col-sm-6">-->
+        <!--                        <div class="form-group">-->
+        <!--                            <label>Categorie</label>-->
+        <!--                            <select class="form-control" type="text" id="categorie" name="categorie">-->
+        <!--                                <option>Selectionnez</option>-->
+        <!--                                --><?php //if ($total_categorie > 0) {
+        //                                    foreach ($result_categorie as $row_categorie) {
+        //                                        ?>
+        <!--                                        <option value="-->
+        <?php //echo $row_categorie["id_categorie"]; ?><!--">-->
+        <?php //echo $row_categorie["categorie"] ?><!--</option>-->
+        <!--                                    --><?php //}
+        //                                } ?>
+        <!--                            </select>-->
+        <!--                            <span id="error_categorie" class="text-danger"></span>-->
+        <!--                        </div>-->
+        <!--                    </div>-->
+        <!--                    <div class="col-sm-6">-->
+        <!--                        <div class="form-group">-->
+        <!--                            <label>Marque</label>-->
+        <!--                            <select class="form-control" type="text" id="marque" name="marque">-->
+        <!--                                <option>Selectionnez</option>-->
+        <!--                                --><?php //if ($total_marque > 0) {
+        //                                    foreach ($result_marque as $row_marque) {
+        //                                        ?>
+        <!--                                        <option value="--><?php //echo $row_marque["id_marque"]; ?><!--">-->
+        <?php //echo $row_marque["marque"]; ?><!--</option>-->
+        <!--                                    --><?php //}
+        //                                } ?>
+        <!--                            </select>-->
+        <!--                            <span id="error_marque" class="text-danger"></span>-->
+        <!--                        </div>-->
+        <!--                    </div>-->
+        <!--                </div>-->
+        <!--                <div class="row">-->
+        <!--                    <div class="col-sm-6">-->
+        <!--                        <div class="form-group">-->
+        <!--                            <label>Code produit</label>-->
+        <!--                            <input type="text" name="code" id="code" class="form-control"/>-->
+        <!--                            <span id="error_code" class="text-danger"></span>-->
+        <!--                        </div>-->
+        <!--                    </div>-->
+        <!--                    <div class="col-sm-6">-->
+        <!--                        <div class="form-group">-->
+        <!--                            <label>Nom produit</label>-->
+        <!--                            <input type="text" name="nom" id="nom" class="form-control"/>-->
+        <!--                            <span id="error_nom" class="text-danger"></span>-->
+        <!--                        </div>-->
+        <!--                    </div>-->
+        <!--                </div>-->
+        <!--                <div class="row">-->
+        <!--                    <div class="col-sm-6">-->
+        <!--                        <div class="form-group">-->
+        <!--                            <label>Prix d'achat</label>-->
+        <!--                            <input type="text" name="pa" id="pa" class="form-control"/>-->
+        <!--                            <span id="error_pa" class="text-danger"></span>-->
+        <!--                        </div>-->
+        <!--                    </div>-->
+        <!--                    <div class="col-sm-6">-->
+        <!--                        <div class="form-group">-->
+        <!--                            <label>Prix de vente</label>-->
+        <!--                            <input type="text" name="pv" id="pv" class="form-control"/>-->
+        <!--                            <span id="error_pv" class="text-danger"></span>-->
+        <!--                        </div>-->
+        <!--                    </div>-->
+        <!--                </div>-->
+        <!--                <div class="row">-->
+        <!--                    <div class="col-sm-6">-->
+        <!--                        <div class="form-group">-->
+        <!--                            <label>Stock</label>-->
+        <!--                            <input type="text" name="stock" id="stock" class="form-control"/>-->
+        <!--                            <span id="error_stock" class="text-danger"></span>-->
+        <!--                        </div>-->
+        <!--                    </div>-->
+        <!--                    <div class="col-sm-6">-->
+        <!--                        <div class="form-group">-->
+        <!--                            <label>Statut</label>-->
+        <!--                            <select class="form-control" type="text" id="statut" name="statut">-->
+        <!--                                <option value="">Selectionnez</option>-->
+        <!--                                <option value="1">Actif</option>-->
+        <!--                                <option value="2">Inactif</option>-->
+        <!--                                <span id="error_statut" class="text-danger"></span>-->
+        <!--                            </select>-->
+        <!--                        </div>-->
+        <!--                    </div>-->
+        <!--                </div>-->
+        <!---->
+        <!--                <!--<div class="row">-->
+        <!--                    <div class="col-sm-6">-->
+        <!--                        <div class="form-group">-->
+        <!--                            <label>Image</label>-->
+        <!--                            <input type="file" name="photo" id="photo" class="form-control" accept="image/png, image/jpeg"/>-->
+        <!--                        </div>-->
+        <!--                    </div>-->
+        <!--                </div>-->-->
+        <!--                <div class="form-group">-->
+        <!--                    <input type="hidden" name="action" id="action" value="insert"/>-->
+        <!--                    <input type="hidden" name="hidden_id" id="hidden_id"/>-->
+        <!--                    <input type="submit" name="form_action" id="form_action" class="btn btn-info" value="Ajouter"/>-->
+        <!--                </div>-->
+        <!--            </form>-->
+        <!--        </div>-->
+
         <!-- SELECT2 EXAMPLE -->
         <div class="card card-default">
             <div class="card-header">
-                <h3 class="card-title">Ajout nouvelle stock</h3>
+                <h3 class="card-title">Creer un nouveau client</h3>
 
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -115,9 +222,18 @@ include('includes/header.php');
             <div class="card-body">
                 <script src="js/prototype.js" type="text/javascript"></script>
                 <script language='javascript' type="text/javascript">
+                    var articles = {}; // Objet pour stocker les informations des articles
+                    var article = 0
+                    var produits_panier = [];
+
                     function recolter() {
                         document.getElementById("formulaire").request({
                             onComplete: function (transport) {
+                                let idClient = document.getElementById("ref_client").value
+
+                                document.getElementById("valider").disabled = idClient <= 0;
+
+
                                 switch (document.getElementById('param').value) {
                                     case 'recup_client':
                                         var tab_info = transport.responseText.split('|');
@@ -127,15 +243,54 @@ include('includes/header.php');
                                         break;
 
                                     case 'recup_article':
+
                                         var tab_info = transport.responseText.split('|');
-                                        document.getElementById('designation').value = tab_info[0];
-                                        document.getElementById('puht').value = tab_info[1];
-                                        document.getElementById('qte').value = tab_info[2];
+                                        var refProduit = tab_info[3];
+
+                                        if (articles[refProduit]) {
+                                            // Si les informations de l'article sont déjà stockées, les charger
+                                            var tab_infos = articles[refProduit];
+                                            document.getElementById('designation').value = tab_infos[0];
+                                            document.getElementById('puht').value = tab_infos[1];
+                                            document.getElementById('qte').value = tab_infos[2];
+                                        } else {
+                                            // Sinon, faire une requête et stocker les informations
+                                            document.getElementById('designation').value = tab_info[0];
+                                            document.getElementById('puht').value = tab_info[1];
+                                            document.getElementById('qte').value = tab_info[2];
+
+                                            // Stocker les informations de l'article
+                                            articles[refProduit] = tab_info;
+                                        }
+                                        console.log(articles)
                                         break;
 
                                     case 'creer_client':
+                                        // var errors = [];
+
+                                        var civilite = document.getElementById('civilite').value;
+                                        var nom_client = document.getElementById('nom_client').value;
+                                        var prenom_client = document.getElementById('prenom_client').value;
                                         var rep = transport.responseText;
-                                        if (rep == "ok")
+
+                                        // if (civilite === "0" || civilite === 0) {
+                                        //     errors.push("Veuillez sélectionner une civilité.");
+                                        // }
+                                        //
+                                        // if (nom_client === "") {
+                                        //     errors.push("Veuillez saisir le nom du client.");
+                                        // }
+                                        //
+                                        // if (prenom_client === "") {
+                                        //     errors.push("Veuillez saisir le prénom du client.");
+                                        // }
+                                        //
+                                        // if (errors.length > 0) {
+                                        //     alert(errors.join("\n"));
+                                        //     return;
+                                        // }
+
+                                        if (rep === "nok")
                                             alert("Le client existe déjà");
                                         else {
                                             var liste = document.getElementById("ref_client");
@@ -144,19 +299,24 @@ include('includes/header.php');
                                             option.text = rep;
                                             liste.add(option);
                                             liste.selectedIndex = liste.length - 1;
+                                            alert("Client creer avec succes")
+                                            document.getElementById("valider").disabled = false;
                                         }
                                         break;
 
                                     case 'facturer':
                                         var reponse = transport.responseText;
-                                        if (transport.responseText == "nok")
+                                        if (transport.responseText === "nok")
                                             alert("Une erreur est survenue");
                                         else {
-                                            if (document.getElementById("paye").value == "" || (document.getElementById("paye").value < (document.getElementById("total_commande").value - document.getElementById("remise").value)) || (document.getElementById("paye").value > (document.getElementById("total_commande").value - document.getElementById("remise").value)))
+                                            // Nous pouvons gerer les accounts avec cette condition : (document.getElementById("paye").value < (document.getElementById("total_commande").value))
+                                            //Et la on peut gerer la monnaie a remettre : (document.getElementById("paye").value > (document.getElementById("total_commande").value))
+                                            if (document.getElementById("paye").value === "") {
                                                 alert("La Somme a payé incorrect");
-                                            else {
+                                            } else {
+
                                                 alert("La facture a été validée");
-                                                document.getElementById("editer").innerHTML = "<input type='button' value='Editer la facture' onclick='window.open(\"edition.php?info=" + reponse + "\")' />";
+                                                document.getElementById("editer").innerHTML = "<input type='button' value='Voir la facture' onclick='window.open(\"edition.php?info=" + reponse + "\")' />";
                                             }
                                         }
 
@@ -169,48 +329,55 @@ include('includes/header.php');
                 </script>
                 <form id="formulaire" name="formulaire" method="post" action="action/add_facture.php">
                     <div class="titre_h1" style="height:350px;">
+                        <!-- Informations du client -->
                         <div style="width:10%;height:50px;float:left;"></div>
                         <div style="width:35%;height:50px;float:left;font-size:20px;font-weight:bold;text-align:left;color:#a13638;">
                             <u>Informations du client</u><br/>
                         </div>
                         <div style="width:10%;height:50px;float:left;"></div>
                         <div style="width:35%;height:50px;float:left;font-size:16px;font-weight:bold;text-align:left;">
-                            <input type="button" id="creer_client" name="creer_client" value="Créer le client"
+                            <input type="button" id="creer_client" name="creer_client" value="Créer le client" disabled
                                    onclick="document.getElementById('param').value='creer_client';recolter();"/>
                         </div>
                         <div style="width:10%;height:50px;float:left;"></div>
 
                         <div style="width:15%;height:55px;float:left;font-size:16px;font-weight:bold;text-align:left;">
-                            Réf. Client :<br/>
+
+                            <label for="ref_client"> Réf. Client :</label><br/>
                             <select id="ref_client" name="ref_client"
                                     onchange="document.getElementById('param').value='recup_client';recolter();">
                                 <option value="0">Choisir client</option>
                                 <?php
-                                $requete = "SELECT IdClient FROM clients ORDER BY IdClient;";
+                                $requete = "SELECT IdClient, Prenom, Nom FROM clients ORDER BY IdClient;";
                                 $retours = mysqli_query($liaison, $requete);
                                 while ($retour = mysqli_fetch_array($retours)) {
-                                    echo "<option value='" . $retour["IdClient"] . "'>" . $retour["IdClient"] . "</option>";
+                                    echo "<option value='" . $retour["IdClient"] . "'>" . $retour["IdClient"] . " - " . $retour["Prenom"] . " " . $retour["Nom"] . "</option>";
                                 }
                                 ?>
                             </select>
                         </div>
                         <div style="width:10%;height:55px;float:left;font-size:16px;font-weight:bold;text-align:left;">
-                            Civilité :<br/>
-                            <input type="text" id="civilite" name="civilite"/>
+                            <label for="civilite"> Civilité :</label>
+                            <select id="civilite" name="civilite">
+                                <option value="0">Selectionner civilite</option>
+                                <option value="Mr">Mr</option>
+                                <option value="Mme">Mme</option>
+                            </select>
                         </div>
 
                         <div style="width:10%;height:55px;float:left;"></div>
                         <div style="width:6%;height:55px;float:left;"></div>
                         <div style="width:25%;height:55px;float:left;font-size:16px;font-weight:bold;text-align:left;">
-                            Nom du client :<br/>
+                            <label for="nom_client">Nom du client :</label> <br>
                             <input type="text" id="nom_client" name="nom_client"/>
                         </div>
                         <div style="width:25%;height:55px;float:left;font-size:16px;font-weight:bold;text-align:left;">
-                            Prénom du client :<br/>
-                            <input type="text" id="prenom_client" name="prenom_client" value=""/>
+                            <label for="prenom_client">Prénom du client :</label> <br/>
+
+                            <input type="text" id="prenom_client" name="prenom_client"/>
                         </div>
 
-
+                        <!-- Ajout des produits commandés -->
                         <div style="width:10%;height:50px;float:left;"></div>
                         <div style="width:80%;height:50px;float:left;font-size:20px;font-weight:bold;text-align:left;color:#a13638;">
                             <u>Ajout des produits commandés</u><br/>
@@ -218,59 +385,61 @@ include('includes/header.php');
                         <div style="width:10%;height:50px;float:left;"></div>
 
                         <div style="width:15%;height:55px;float:left;font-size:16px;font-weight:bold;text-align:left;">
-                            Réf. Produit :<br/>
+                            <label for="ref_produit">Réf. Produit :</label> <br>
                             <select id="ref_produit" name="ref_produit"
                                     onchange="document.getElementById('param').value='recup_article';recolter();">
                                 <option value="0">Réf. produit</option>
                                 <?php
-                                $requete = "SELECT id_produit FROM produit ORDER BY id_produit;";
+                                $requete = "SELECT id_produit, nom_produit FROM produit ORDER BY id_produit;";
                                 $retours = mysqli_query($liaison, $requete);
                                 while ($retour = mysqli_fetch_array($retours)) {
-                                    echo "<option value='" . $retour["id_produit"] . "'>" . $retour["id_produit"] . "</option>";
+                                    echo "<option value='" . $retour["id_produit"] . "'>" . $retour["id_produit"] . '-' . $retour['nom_produit'].  "</option>";
                                 }
                                 ?>
                             </select>
                         </div>
                         <div style="width:15%;height:55px;float:left;font-size:16px;font-weight:bold;text-align:left;">
-                            Qté en stock :<br/>
+                            <label for="qte"> Qté en stock :</label>
                             <input type="text" id="qte" name="qte" disabled style="text-align:right;"/>
                         </div>
                         <div style="width:10%;height:55px;float:left;"></div>
                         <div style="width:25%;height:55px;float:left;font-size:16px;font-weight:bold;text-align:left;">
-                            Désignation du produit :<br/>
+                            <label for="designation">Désignation du produit :</label>
                             <input type="text" id="designation" name="designation" disabled/>
                         </div>
                         <div style="width:25%;height:55px;float:left;font-size:16px;font-weight:bold;text-align:left;">
-                            Prix unitaire HT :<br/>
+                            <label for="puht"> Prix unitaire HT :</label> <br>
                             <input type="text" id="puht" name="puht" disabled style="text-align:right;"/>
                         </div>
                         <div style="width:10%;height:55px;float:left;"></div>
 
-                        <div class="div_saut_ligne" style="height:2%;">
-                        </div>
+                        <div class="div_saut_ligne" style="height:2%;"></div>
 
                         <div style="width:0;height:55px;float:left;"></div>
                         <div style="width:10%;height:55px;float:left;font-size:16px;font-weight:bold;text-align:left;">
-                            Quantité:<br/>
-                            <input type="text" id="qte_commande" name="qte_commande"/>
+                            <label for="qte_commande"> Quantité:</label>
+                            <input type="number" id="qte_commande" name="qte_commande"/>
                         </div>
                         <div style="width:7%;height:55px;float:left;"></div>
                         <div style="width:20%;height:55px;float:left;font-size:16px;font-weight:bold;text-align:left;margin-top: -5px;">
-                            Total commande :<br/>
-                            <h4>
+                            <h5>
+                                <label for="total_commande">Total commande :</label>
                                 <input type="text" id="total_commande" name="total_commande" disabled
                                        style="color:#7f0c06;width:100%;font-family: Arial Black;"/>
-                            </h4>
+                            </h5>
                         </div>
                         <div style="width:3%;height:55px;float:left;"></div>
                         <div style="width:15%;height:55px;float:left;font-size:16px;font-weight:bold;text-align:left;margin-top: -5px;">
-                            Remise :<br/>
-                            <input type="text" id="remise" name="remise" value="0" onchange="montan_a_payer();"/>
+                            <label for="remise">Remise :</label>
+                            <input type="text" id="remise" name="remise" value="0" disabled/>
+                            <input type="text" id="total_remise" name="total_remise" style="visibility:hidden;"/>
+
                         </div>
                         <div style="width:3%;height:55px;float:left;"></div>
                         <div style="width:15%;height:55px;float:left;font-size:16px;font-weight:bold;text-align:left;margin-top: -5px;">
-                            Payé :<br/>
-                            <input type="text" id="paye" name="paye"/>
+                            <label for="paye">Payé :</label>
+                            <input type="number" id="paye" name="paye"
+                                   onchange="maj_total_remise()"/>
                         </div>
                         <div style="width:3%;height:55px;float:left;"></div>
                         <div style="width:7%;height:55px;float:left;font-size:16px;font-weight:bold;text-align:left;padding-top: 10px;">
@@ -279,8 +448,11 @@ include('includes/header.php');
                             <input type="text" id="param" name="param" style="visibility:hidden;"/>
                         </div>
                         <div style="width:15%;height:55px;float:left;font-size:16px;font-weight:bold;text-align:left;padding-top: 10px;">
-                            <input type="button" id="valider" name="valider" value="Valider" style="margin-top:10px;"
-                                   onclick="document.getElementById('param').value='facturer';recolter();"/><br/>
+
+                            <input type="button" id="valider" name="valider" value="Valider" disabled
+                                   style="margin-top:10px;"
+                                   onclick="document.getElementById('param').value='facturer';recolter();"/>
+
                             <input type="text" id="chaine_com" name="chaine_com" style="visibility:hidden;"/>
                             <input type="text" id="total_com" name="total_com" style="visibility:hidden;"/>
                         </div>
@@ -314,19 +486,19 @@ include('includes/header.php');
                         <div style="float:left;width:100%;height:auto;" id="det_com">
                             <div class="bord"></div>
                             <div class="suite">
-                                CH001
+
                             </div>
                             <div class="suite">
-                                125
+
                             </div>
                             <div class="des">
-                                Chemise
+
                             </div>
                             <div class="prix">
-                                125.25
+
                             </div>
                             <div class="prix" style="font-weight:bold;">
-                                1243.75
+
                             </div>
                             <div class="bord"></div>
 
@@ -341,28 +513,61 @@ include('includes/header.php');
             <script language='javascript' type="text/javascript">
                 var tot_com = 0;
 
+
+                document.getElementById("formulaire").addEventListener("input", (ev) => {
+                    if (document.getElementById("nom_client").value.length >= 2 && document.getElementById("prenom_client").value.length >= 2 && document.getElementById("civilite").value !== "0") {
+                        document.getElementById("creer_client").disabled = false;
+                    }
+                })
+
+                document.getElementById("paye").addEventListener("input", (e) => {
+                    maj_total_remise()
+                });
+
+                function somme_a_retouner() {
+                    return document.getElementById('paye').value - document.getElementById('total_commande').value
+                }
+
+                function maj_total_remise() {
+                    document.getElementById('remise').value = somme_a_retouner()
+                    document.getElementById('total_remise').value = document.getElementById('remise').value;
+                }
+
                 function plus_com() {
-                    if (ref_client.value != 0 && ref_produit.value != 0 && qte_commande.value != "0" && qte_commande.value != "") {
+                    var ref_p = ref_produit.value;
+
+                    if (ref_client.value !== 0 && ref_p !== 0 && qte_commande.value !== "0" && qte_commande.value !== "") {
                         if (parseInt(qte_commande.value) > parseInt(qte.value))
                             alert("La quantité en stock n'est pas suffisante pour honorer la commande");
                         else {
-                            var ref_p = ref_produit.value;
-                            var qte_p = qte_commande.value;
-                            var des_p = designation.value;
-                            var pht_p = puht.value;
+                            // Utiliser les données du tableau articles
+                            if (articles[ref_p]) {
+                                article = articles[ref_p];
+                                var des_p = article[0];
+                                var pht_p = article[1];
+                                var qte_p = qte_commande.value;
 
-                            tot_com = tot_com + qte_p * pht_p;
-                            total_commande.value = tot_com.toFixed(2);
-                            total_com.value = total_commande.value;
-                            chaine_com.value += "|" + ref_p + ";" + qte_p + ";" + des_p + ";" + pht_p;
-                            facture();
+                                article[2] = article[2] - parseInt(qte_p);
+
+                                qte.value = article[2]
+
+                                tot_com = tot_com + qte_p * pht_p;
+                                total_commande.value = tot_com.toFixed(2);
+                                total_com.value = total_commande.value;
+                                chaine_com.value += "|" + ref_p + ";" + qte_p + ";" + des_p + ";" + pht_p;
+                                facture();
+                            } else {
+                                alert("Les informations du produit ne sont pas disponibles.");
+                            }
                         }
                     }
+
+                    maj_total_remise();
                 }
 
                 function montan_a_payer() {
                     //alert("test");
-                    document.getElementById('paye').value = document.getElementById('total_commande').value - document.getElementById('remise').value;
+                    document.getElementById('paye').value = document.getElementById('total_commande').value;
                 }
 
 
@@ -393,6 +598,11 @@ include('includes/header.php');
                     total_com.value = total_commande.value;
                     tot_com = total_com.value * 1;
 
+                    document.getElementById("ref_produit").value = tab_detail[0]
+                    articles[tab_detail[0]][2] = articles[tab_detail[0]][2] + tab_detail[1] * 1
+                    qte.value = articles[tab_detail[0]][2]
+
+                    maj_total_remise();
                     facture();
                 }
             </script>
