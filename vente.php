@@ -3,6 +3,7 @@
 $liaison = mysqli_connect('127.0.0.1', 'fly', 'root');
 mysqli_select_db($liaison, 'stock_v3');
 
+
 include('includes/header.php');
 
 ?>
@@ -221,15 +222,17 @@ include('includes/header.php');
             <div class="card-body">
                 <script src="js/prototype.js" type="text/javascript"></script>
                 <script language='javascript' type="text/javascript">
+                    var articles = {}; // Objet pour stocker les informations des articles
+                    var article = 0
+
                     function recolter() {
                         document.getElementById("formulaire").request({
                             onComplete: function (transport) {
                                 let idClient = document.getElementById("ref_client").value
-                                if (idClient > 0) {
-                                    document.getElementById("valider").disabled = false
-                                } else {
-                                    document.getElementById("valider").disabled = true
-                                }
+
+                                document.getElementById("valider").disabled = idClient <= 0;
+
+
                                 switch (document.getElementById('param').value) {
                                     case 'recup_client':
                                         var tab_info = transport.responseText.split('|');
@@ -239,10 +242,26 @@ include('includes/header.php');
                                         break;
 
                                     case 'recup_article':
+
                                         var tab_info = transport.responseText.split('|');
-                                        document.getElementById('designation').value = tab_info[0];
-                                        document.getElementById('puht').value = tab_info[1];
-                                        document.getElementById('qte').value = tab_info[2];
+                                        var refProduit = tab_info[3];
+
+                                        if (articles[refProduit]) {
+                                            // Si les informations de l'article sont déjà stockées, les charger
+                                            var tab_infos = articles[refProduit];
+                                            document.getElementById('designation').value = tab_infos[0];
+                                            document.getElementById('puht').value = tab_infos[1];
+                                            document.getElementById('qte').value = tab_infos[2];
+                                        } else {
+                                            // Sinon, faire une requête et stocker les informations
+                                            document.getElementById('designation').value = tab_info[0];
+                                            document.getElementById('puht').value = tab_info[1];
+                                            document.getElementById('qte').value = tab_info[2];
+
+                                            // Stocker les informations de l'article
+                                            articles[refProduit] = tab_info;
+                                        }
+                                        console.log(articles)
                                         break;
 
                                     case 'creer_client':
@@ -252,7 +271,7 @@ include('includes/header.php');
                                         var prenom_client = document.getElementById('prenom_client').value;
                                         var rep = transport.responseText;
 
-                                        if (civilite === "0") {
+                                        if (civilite === "0" || civilite === 0) {
                                             errors.push("Veuillez sélectionner une civilité.");
                                         }
 
@@ -266,7 +285,7 @@ include('includes/header.php');
 
                                         if (errors.length > 0) {
                                             alert(errors.join("\n"));
-                                            return; // Arrêter le traitement si des erreurs existent
+                                            return;
                                         }
 
                                         if (rep === "nok")
@@ -286,9 +305,11 @@ include('includes/header.php');
                                         if (transport.responseText === "nok")
                                             alert("Une erreur est survenue");
                                         else {
-                                            if (document.getElementById("paye").value === "" || (document.getElementById("paye").value < (document.getElementById("total_commande").value)) || (document.getElementById("paye").value > (document.getElementById("total_commande").value)))
+                                            // Nous pouvons gerer les accounts avec cette condition : (document.getElementById("paye").value < (document.getElementById("total_commande").value))
+                                            //Et la on peut gerer la monnaie a remettre : (document.getElementById("paye").value > (document.getElementById("total_commande").value))
+                                            if (document.getElementById("paye").value === "") {
                                                 alert("La Somme a payé incorrect");
-                                            else {
+                                            } else {
                                                 alert("La facture a été validée");
                                                 document.getElementById("editer").innerHTML = "<input type='button' value='Editer la facture' onclick='window.open(\"edition.php?info=" + reponse + "\")' />";
                                             }
@@ -316,7 +337,8 @@ include('includes/header.php');
                         <div style="width:10%;height:50px;float:left;"></div>
 
                         <div style="width:15%;height:55px;float:left;font-size:16px;font-weight:bold;text-align:left;">
-                            Réf. Client :<br/>
+
+                            <label for="ref_client"> Réf. Client :</label><br/>
                             <select id="ref_client" name="ref_client"
                                     onchange="document.getElementById('param').value='recup_client';recolter();">
                                 <option value="0">Choisir client</option>
@@ -330,7 +352,7 @@ include('includes/header.php');
                             </select>
                         </div>
                         <div style="width:10%;height:55px;float:left;font-size:16px;font-weight:bold;text-align:left;">
-                            Civilité : <br/>
+                            <label for="civilite"> Civilité :</label>
                             <select id="civilite" name="civilite">
                                 <option value="0">Selectionner civilite</option>
                                 <option value="Mr">Mr</option>
@@ -341,11 +363,12 @@ include('includes/header.php');
                         <div style="width:10%;height:55px;float:left;"></div>
                         <div style="width:6%;height:55px;float:left;"></div>
                         <div style="width:25%;height:55px;float:left;font-size:16px;font-weight:bold;text-align:left;">
-                            Nom du client :<br/>
+                            <label for="nom_client">Nom du client :</label> <br>
                             <input type="text" id="nom_client" name="nom_client"/>
                         </div>
                         <div style="width:25%;height:55px;float:left;font-size:16px;font-weight:bold;text-align:left;">
-                            Prénom du client :<br/>
+                            <label for="prenom_client">Prénom du client :</label> <br/>
+
                             <input type="text" id="prenom_client" name="prenom_client"/>
                         </div>
 
@@ -357,7 +380,7 @@ include('includes/header.php');
                         <div style="width:10%;height:50px;float:left;"></div>
 
                         <div style="width:15%;height:55px;float:left;font-size:16px;font-weight:bold;text-align:left;">
-                            Réf. Produit :<br/>
+                            <label for="ref_produit">Réf. Produit :</label> <br>
                             <select id="ref_produit" name="ref_produit"
                                     onchange="document.getElementById('param').value='recup_article';recolter();">
                                 <option value="0">Réf. produit</option>
@@ -371,16 +394,16 @@ include('includes/header.php');
                             </select>
                         </div>
                         <div style="width:15%;height:55px;float:left;font-size:16px;font-weight:bold;text-align:left;">
-                            Qté en stock :<br/>
+                            <label for="qte"> Qté en stock :</label>
                             <input type="text" id="qte" name="qte" disabled style="text-align:right;"/>
                         </div>
                         <div style="width:10%;height:55px;float:left;"></div>
                         <div style="width:25%;height:55px;float:left;font-size:16px;font-weight:bold;text-align:left;">
-                            Désignation du produit :<br/>
+                            <label for="designation">Désignation du produit :</label>
                             <input type="text" id="designation" name="designation" disabled/>
                         </div>
                         <div style="width:25%;height:55px;float:left;font-size:16px;font-weight:bold;text-align:left;">
-                            Prix unitaire HT :<br/>
+                            <label for="puht"> Prix unitaire HT :</label> <br>
                             <input type="text" id="puht" name="puht" disabled style="text-align:right;"/>
                         </div>
                         <div style="width:10%;height:55px;float:left;"></div>
@@ -389,26 +412,29 @@ include('includes/header.php');
 
                         <div style="width:0;height:55px;float:left;"></div>
                         <div style="width:10%;height:55px;float:left;font-size:16px;font-weight:bold;text-align:left;">
-                            Quantité:<br/>
-                            <input type="text" id="qte_commande" name="qte_commande"/>
+                            <label for="qte_commande"> Quantité:</label>
+                            <input type="number" id="qte_commande" name="qte_commande"/>
                         </div>
                         <div style="width:7%;height:55px;float:left;"></div>
                         <div style="width:20%;height:55px;float:left;font-size:16px;font-weight:bold;text-align:left;margin-top: -5px;">
-                            Total commande :<br/>
-                            <h4>
+                            <h5>
+                                <label for="total_commande">Total commande :</label>
                                 <input type="text" id="total_commande" name="total_commande" disabled
                                        style="color:#7f0c06;width:100%;font-family: Arial Black;"/>
-                            </h4>
+                            </h5>
                         </div>
                         <div style="width:3%;height:55px;float:left;"></div>
-                        <!--                        <div style="width:15%;height:55px;float:left;font-size:16px;font-weight:bold;text-align:left;margin-top: -5px;">-->
-                        <!--                            Remise :<br/>-->
-                        <!--                            <input type="text" id="remise" name="remise" value="0" onchange="montant_a_payer();"/>-->
-                        <!--                        </div>-->
+                        <div style="width:15%;height:55px;float:left;font-size:16px;font-weight:bold;text-align:left;margin-top: -5px;">
+                            <label for="remise">Remise :</label>
+                            <input type="text" id="remise" name="remise" value="0" disabled/>
+                            <input type="text" id="total_remise" name="total_remise" style="visibility:hidden;"/>
+
+                        </div>
                         <div style="width:3%;height:55px;float:left;"></div>
                         <div style="width:15%;height:55px;float:left;font-size:16px;font-weight:bold;text-align:left;margin-top: -5px;">
-                            Payé :<br/>
-                            <input type="text" id="paye" name="paye"/>
+                            <label for="paye">Payé :</label>
+                            <input type="number" id="paye" name="paye"
+                                   onchange="maj_total_remise()"/>
                         </div>
                         <div style="width:3%;height:55px;float:left;"></div>
                         <div style="width:7%;height:55px;float:left;font-size:16px;font-weight:bold;text-align:left;padding-top: 10px;">
@@ -417,9 +443,11 @@ include('includes/header.php');
                             <input type="text" id="param" name="param" style="visibility:hidden;"/>
                         </div>
                         <div style="width:15%;height:55px;float:left;font-size:16px;font-weight:bold;text-align:left;padding-top: 10px;">
+
                             <input type="button" id="valider" name="valider" value="Valider" disabled
                                    style="margin-top:10px;"
-                                   onclick="document.getElementById('param').value='facturer';recolter();"/><br/>
+                                   onclick="document.getElementById('param').value='facturer';recolter();"/>
+
                             <input type="text" id="chaine_com" name="chaine_com" style="visibility:hidden;"/>
                             <input type="text" id="total_com" name="total_com" style="visibility:hidden;"/>
                         </div>
@@ -480,25 +508,50 @@ include('includes/header.php');
             <script language='javascript' type="text/javascript">
                 var tot_com = 0;
 
+
+                document.getElementById("paye").addEventListener("input", (e) => {
+                    maj_total_remise()
+                });
+
+                function somme_a_retouner() {
+                    return document.getElementById('paye').value - document.getElementById('total_commande').value
+                }
+
+                function maj_total_remise() {
+                    document.getElementById('remise').value = somme_a_retouner()
+                    document.getElementById('total_remise').value = document.getElementById('remise').value;
+                }
+
                 function plus_com() {
-                    if (ref_client.value !== 0 && ref_produit.value !== 0 && qte_commande.value !== "0" && qte_commande.value !== "") {
+                    var ref_p = ref_produit.value;
+
+                    if (ref_client.value !== 0 && ref_p !== 0 && qte_commande.value !== "0" && qte_commande.value !== "") {
                         if (parseInt(qte_commande.value) > parseInt(qte.value))
                             alert("La quantité en stock n'est pas suffisante pour honorer la commande");
                         else {
-                            const ref_p = ref_produit.value;
-                            const qte_p = qte_commande.value;
-                            const des_p = designation.value;
-                            const pht_p = puht.value;
+                            // Utiliser les données du tableau articles
+                            if (articles[ref_p]) {
+                                article = articles[ref_p];
+                                var des_p = article[0];
+                                var pht_p = article[1];
+                                var qte_p = qte_commande.value;
 
-                            qte.value = parseInt(qte.value) - parseInt(qte_p);
+                                article[2] = article[2] - parseInt(qte_p);
 
-                            tot_com = tot_com + qte_p * pht_p;
-                            total_commande.value = tot_com.toFixed(2);
-                            total_com.value = total_commande.value;
-                            chaine_com.value += "|" + ref_p + ";" + qte_p + ";" + des_p + ";" + pht_p;
-                            facture();
+                                qte.value = article[2]
+
+                                tot_com = tot_com + qte_p * pht_p;
+                                total_commande.value = tot_com.toFixed(2);
+                                total_com.value = total_commande.value;
+                                chaine_com.value += "|" + ref_p + ";" + qte_p + ";" + des_p + ";" + pht_p;
+                                facture();
+                            } else {
+                                alert("Les informations du produit ne sont pas disponibles.");
+                            }
                         }
                     }
+
+                    maj_total_remise();
                 }
 
                 function montan_a_payer() {
@@ -509,12 +562,12 @@ include('includes/header.php');
 
                 function facture() {
 
-                    const tab_com = chaine_com.value.split('|');
-                    const nb_lignes = tab_com.length;
+                    var tab_com = chaine_com.value.split('|');
+                    var nb_lignes = tab_com.length;
                     document.getElementById("det_com").innerHTML = "";
                     for (ligne = 0; ligne < nb_lignes; ligne++) {
                         if (tab_com[ligne] != "") {
-                            const ligne_com = tab_com[ligne].split(';');
+                            var ligne_com = tab_com[ligne].split(';');
                             document.getElementById("det_com").innerHTML += "<div class='bord'></div>";
                             document.getElementById("det_com").innerHTML += "<div class='suite'>" + ligne_com[0] + "</div>";
                             document.getElementById("det_com").innerHTML += "<div class='suite'>" + ligne_com[1] + "</div>";
@@ -528,12 +581,17 @@ include('includes/header.php');
 
                 function suppr(ligne_s) {
                     chaine_com.value = chaine_com.value.replace('|' + ligne_s, '');
-                    const tab_detail = ligne_s.split(';');
+                    var tab_detail = ligne_s.split(';');
 
                     total_commande.value = (total_commande.value - tab_detail[1] * tab_detail[3]).toFixed(2);
                     total_com.value = total_commande.value;
                     tot_com = total_com.value * 1;
 
+                    document.getElementById("ref_produit").value = tab_detail[0]
+                    articles[tab_detail[0]][2] = articles[tab_detail[0]][2] + tab_detail[1] * 1
+                    qte.value = articles[tab_detail[0]][2]
+
+                    maj_total_remise();
                     facture();
                 }
             </script>

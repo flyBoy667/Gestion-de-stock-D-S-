@@ -16,7 +16,7 @@ if (isset($_POST["param"])) {
             $requete = "SELECT * FROM produit WHERE id_produit = '" . $_POST["ref_produit"] . "';";
             $retours = mysqli_query($liaison, $requete);
             $retour = mysqli_fetch_array($retours);
-            $chaine = $retour["nom_produit"] . "|" . $retour["prix_vente"] . "|" . $retour["stock_encours"];
+            $chaine = $retour["nom_produit"] . "|" . $retour["prix_vente"] . "|" . $retour["stock_encours"] . "|" . $retour["id_produit"];
             print($chaine);
             break;
 
@@ -34,7 +34,9 @@ if (isset($_POST["param"])) {
             }
             break;
         case "facturer":
+            
             if ($_POST["paye"] != 0) {
+
                 $requete = "SELECT Com_num FROM commandes ORDER BY Com_num DESC LIMIT 1;";
                 $retours = mysqli_query($liaison, $requete);
                 $retour = mysqli_fetch_array($retours);
@@ -44,12 +46,16 @@ if (isset($_POST["param"])) {
                 $transaction_date = date('Y-m-d');
                 $com_montant = $_POST["total_com"];
                 $montant_paye = $_POST["paye"];
-                $remise = $_POST["remise"];
+                $remise = $_POST["total_remise"];
                 $facture_number = $com_date . "/S-00" . $derniere_com;
                 $type = 1;
 
                 $texte_com = $_POST["chaine_com"];
                 $tab_com = explode('|', $texte_com);
+
+                if ($montant_paye < $com_montant) {
+
+                }
 
                 $requete = "INSERT INTO commandes(Com_client, Com_date, Com_montant, facture_number, Com_remise, montant_paye) VALUES (" . $com_client . ", '" . $com_date . "', " . $com_montant . ", '" . $facture_number . "'," . $remise . "," . $montant_paye . ");";
                 $retours = mysqli_query($liaison, $requete);
