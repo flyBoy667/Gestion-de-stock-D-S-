@@ -298,6 +298,8 @@ include('includes/header.php');
                                             option.text = rep;
                                             liste.add(option);
                                             liste.selectedIndex = liste.length - 1;
+                                            alert("Client creer avec succes")
+                                            document.getElementById("valider").disabled = false;
                                         }
                                         break;
 
